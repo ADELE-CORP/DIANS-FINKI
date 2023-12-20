@@ -1,19 +1,30 @@
-# Faculty of Computer Science and Engineering,Skopje
+# React + TypeScript + Vite
 
-# ADELE-CORP
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Authors: </br>
-1. **A**rdit Sakipi (211545) </br>
-2. **D**rin Kadriu (211505) </br>
-3. **E**ngjell Vlashi (211519) </br>
-4. **L**eon Saraqini (211508) </br>
-5. **E**roll Sakipi (211590) </br>
+Currently, two official plugins are available:
 
-  **A D E L E**
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Mentors: </br>
-проф. д-р Љупчо Антовски </br>
-проф. д-р Петре Ламески  </br>
+## Expanding the ESLint configuration
 
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
+- Configure the top-level `parserOptions` property like this:
 
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

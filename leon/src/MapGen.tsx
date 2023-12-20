@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Header from "./pages/Header.tsx";
+import Footer from "./pages/Footer.tsx";
 
 
 export default function NorthMacedoniaMap() {
@@ -58,12 +60,15 @@ export default function NorthMacedoniaMap() {
     }, [filter, monumentsData]);
 
     return (
-        <div className='mainn'>
-            <div className='miss'>
+        // Use flex and flex-col to create a column layout
+        <div className="flex flex-col h-screen">
+            {/* Make the map container grow and fill the available space */}
+            <Header />
+            <div className="grow mt-16">
                 <MapContainer
                     center={[41.6086, 21.7453]}
                     zoom={7}
-                    style={{ width: '850px', height: "600px" }}
+                    className="w-full h-full" // Set width and height to full
                     maxBounds={northMacedoniaBounds as any}
                     minZoom={7}
                 >
@@ -71,7 +76,6 @@ export default function NorthMacedoniaMap() {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
-
                     {filteredData &&
                         <GeoJSON
                             key={(filteredData as any).features.length}
@@ -81,21 +85,23 @@ export default function NorthMacedoniaMap() {
                     }
                 </MapContainer>
             </div>
-
-            <p>
-                <input
-                    type="text"
-                    placeholder="Filter by property..."
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                />
-                <br></br>
-                {filteredData &&
-                    <h1>{(filteredData as any).features.length} Results</h1>
-                }
-
-                <br></br>
-            </p>
+            <Footer />
         </div>
+
+        //     <p>
+        //         <input
+        //             type="text"
+        //             placeholder="Filter by property..."
+        //             value={filter}
+        //             onChange={(e) => setFilter(e.target.value)}
+        //         />
+        //         <br></br>
+        //         {filteredData &&
+        //             <h1>{(filteredData as any).features.length} Results</h1>
+        //         }
+        //
+        //         <br></br>
+        //     </p>
+        // </div>
     );
 }
