@@ -112,12 +112,47 @@ export default function NorthMacedoniaMap() {
         }
     }, [filter, monumentsData]);
 
+
+    const handleSearch = () => {
+        // Logic to handle the search action, potentially updating the filteredData
+        // This is where you would filter the monumentsData based on the filter state
+        const mD = monumentsData as any;
+        if (mD && mD.features) {
+            const filteredFeatures = mD.features.filter((feature: any) =>
+                feature.properties.name.toLowerCase().includes(filter.toLowerCase())
+            );
+            setFilteredData({ ...mD, features: filteredFeatures });
+        }
+    };
+
     return (
         // Use flex and flex-col to create a column layout
         <div className="flex flex-col h-screen">
             {/* Make the map container grow and fill the available space */}
             <Header />
-            <div className="grow mt-16">
+
+            <div className="bg-white shadow p-4 mt-20">
+                <div className="max-w-3xl mx-auto flex">
+                    <input
+                        className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none"
+                        type="text"
+                        placeholder="Search by name..."
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                    />
+                    <button
+                        className="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none"
+                        onClick={handleSearch}
+                    >
+                        Search
+                    </button>
+                </div>
+                {filteredData && (
+                    <h1 className="text-center my-4">{filteredData.features.length > 0 ? filteredData.features.length - 1 : 0 } Results</h1>
+                )}
+            </div>
+
+            <div className="grow ">
                 <MapContainer
                     center={[41.6086, 21.7453]}
                     zoom={7}
@@ -141,20 +176,20 @@ export default function NorthMacedoniaMap() {
             <Footer />
         </div>
 
-        //     <p>
-        //         <input
-        //             type="text"
-        //             placeholder="Filter by property..."
-        //             value={filter}
-        //             onChange={(e) => setFilter(e.target.value)}
-        //         />
-        //         <br></br>
-        //         {filteredData &&
-        //             <h1>{(filteredData as any).features.length} Results</h1>
-        //         }
-        //
-        //         <br></br>
-        //     </p>
-        // </div>
+            // <p>
+            //     <input
+            //         type="text"
+            //         placeholder="Filter by property..."
+            //         value={filter}
+            //         onChange={(e) => setFilter(e.target.value)}
+            //     />
+            //     <br></br>
+            //     {filteredData &&
+            //         <h1>{(filteredData as any).features.length} Results</h1>
+            //     }
+            //
+            //     <br></br>
+            // </p>
+
     );
 }
