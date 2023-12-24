@@ -30,15 +30,15 @@ function CulturalDistricts() {
                 <img src={rightEndPhoto} id="rightEndPhoto" alt="Right End" />
 
                 <div id="map">
-                    <img src={firstStar} alt="star" className="star" id="culturalDisctricsStarTop" />
-                    <img src={fullMap} id="fullMap" alt="Full Map" />
+                    {/*<img src={firstStar} alt="star" className="star" id="culturalDisctricsStarTop" />*/}
+                    {/*<img src={fullMap} id="fullMap" alt="Full Map" />*/}
 
                     <div id="fullMapPage">
                         <button id="submit" onClick={handleExploreClick}>EXPLORE</button>
                     </div>
                 </div>
 
-                <img src={firstStar} alt="star" className="star" id="culturalDisctricsStarbottom" />
+                {/*<img src={firstStar} alt="star" className="star" id="culturalDisctricsStarbottom" />*/}
             </div>
         </div>
     );

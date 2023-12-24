@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from "./pages/Header.tsx";
 import Footer from "./pages/Footer.tsx";
 import pin from "./images/pin.png";
+import { useLocation } from 'react-router-dom';
+
 
 
 const styles = {
@@ -73,6 +75,20 @@ export default function NorthMacedoniaMap() {
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
+
+
+
+    const location = useLocation();
+    const userEmail = location.state?.email;
+
+    useEffect(() => {
+        if (userEmail) {
+            toast.success(`Welcome back, ${userEmail}`);
+        }
+    }, [userEmail]);
+
+    // User profile card state
+    const [showProfileCard, setShowProfileCard] = useState(false);
 
 
 
@@ -178,7 +194,7 @@ export default function NorthMacedoniaMap() {
                         Search
                     </button>
                 </div>
-                <h1 className="text-center my-4">Total {filteredData.features.length} results found</h1>
+                <h1 className="text-center my-4">Total {filteredData.features.length > 0 ? filteredData.features.length - 1   : 0} results found</h1>
                 <div className="favorites-list">
                     <h2>Favorites</h2>
                     <ul className="flex flex-col p-2 mt-1 w-100  ">

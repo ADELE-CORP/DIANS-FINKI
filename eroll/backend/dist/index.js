@@ -10,6 +10,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const db_1 = require("./db");
 // Ensure this is correctly exported from userModel.ts
+const favoriteRoutes_1 = __importDefault(require("./routes/favoriteRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 4000;
@@ -19,11 +20,12 @@ app.use((0, cors_1.default)({
 }));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
+app.use('/favorites', favoriteRoutes_1.default);
 // Database connection
 (0, db_1.dbConnect)().then(() => {
     console.log("DB connection successful!");
     // Optional: Call saveData here if needed
-    //  saveData();
+    // saveData();
 });
 // Use auth routes
 app.use('/auth', authRoutes_1.default);

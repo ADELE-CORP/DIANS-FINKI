@@ -7,6 +7,8 @@ import authRoutes from './routes/authRoutes';
 import {FeatureModel, dbConnect, saveData} from './db';
 // Ensure this is correctly exported from userModel.ts
 
+import favoriteRoutes from './routes/favoriteRoutes';
+
 dotenv.config();
 
 const app = express();
@@ -16,15 +18,18 @@ app.use(cors({
     origin: ['http://localhost:3000', 'http://localhost:5173'],
     credentials: true,
 }));
+
+
 app.use(cookieParser());
 app.use(express.json());
+app.use('/favorites', favoriteRoutes);
 
 // Database connection
 dbConnect().then(() => {
     console.log("DB connection successful!");
 
     // Optional: Call saveData here if needed
-  //  saveData();
+  // saveData();
 });
 
 // Use auth routes
