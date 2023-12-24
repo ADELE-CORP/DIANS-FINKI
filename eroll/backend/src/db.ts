@@ -34,7 +34,7 @@ const FeatureModel = mongoose.model('Feature', Feature);
 
 
 export async function dbConnect() {
-    const uri: string = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/quksh';
+    const uri: string = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/adeleDB';
     try {
         await mongoose.connect(uri);
         console.log("DB connection successful!");

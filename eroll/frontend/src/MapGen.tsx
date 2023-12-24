@@ -184,17 +184,18 @@ export default function NorthMacedoniaMap() {
                     />
                     <button
                         className="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none"
-                        onClick={() => {
-                            const filteredFeatures = monumentsData.features.filter((feature) =>
-                                feature.properties.name.toLowerCase().includes(filter.toLowerCase())
-                            );
-                            setFilteredData({ ...monumentsData, features: filteredFeatures });
-                        }}
+                        // onClick={() => {
+                        //     const filteredFeatures = monumentsData.features.filter((feature) =>
+                        //         feature.properties.name.toLowerCase().includes(filter.toLowerCase())
+                        //     );
+                        //     setFilteredData({ ...monumentsData, features: filteredFeatures });
+                        // }}
                     >
                         Search
                     </button>
                 </div>
-                <h1 className="text-center my-4">Total {filteredData.features.length > 0 ? filteredData.features.length - 1   : 0} results found</h1>
+                {/*<h1 className="text-center my-4">Total {filteredData.features.length > 0 ? filteredData.features.length - 1   : 0} results found</h1>*/}
+                <h1 className="text-center my-4">Total {filteredData.features.length } results found</h1>
                 <div className="favorites-list">
                     <h2>Favorites</h2>
                     <ul className="flex flex-col p-2 mt-1 w-100  ">
