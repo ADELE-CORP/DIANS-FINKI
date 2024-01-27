@@ -29,7 +29,8 @@ function Register() {
         event.preventDefault();
         try {
             const { data } = await axios.post(
-                "https://adele-node-mongodb.onrender.com/auth/register",
+                // for depl "https://adele-node-mongodb.onrender.com/auth/register",
+                "http://localhost:8080/auth/register",
                 {
                     ...values,
                 },

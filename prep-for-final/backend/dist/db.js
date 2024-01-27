@@ -34,9 +34,11 @@ const Feature = new Schema({
 const FeatureModel = mongoose_1.default.model('Feature', Feature);
 exports.FeatureModel = FeatureModel;
 async function dbConnect() {
-    const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/quksh';
+    // const uri: string = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/quksh';
+    const uri = 'mongodb://127.0.0.1:27017/quksh';
     try {
         await mongoose_1.default.connect(uri);
+        console.log(uri);
         console.log("DB connection successful!");
     }
     catch (err) {

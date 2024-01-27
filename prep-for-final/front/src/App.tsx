@@ -13,6 +13,7 @@ import Register from "./pages/Register.tsx";
 import NorthMacedoniaMap from './MapGen.tsx';
 import CulturalDistricts from "./pages/CulturalDisctrict.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
+import {FavoritesProvider} from "./FavoritesContext.tsx";
 
 
 
@@ -67,6 +68,7 @@ function App() {
 
     return (
         <Router>
+            <FavoritesProvider>
             <Routes>
                 <Route path="/" element={
                     <>
@@ -93,6 +95,7 @@ function App() {
                 <Route path="/mapgen" element={<NorthMacedoniaMap />} />
                 <Route path="/aboutUs" element={<AboutUs />} />
             </Routes>
+            </FavoritesProvider>
         </Router>
     );
 }

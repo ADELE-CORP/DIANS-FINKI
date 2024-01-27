@@ -15,7 +15,8 @@ function Login() {
 
     useEffect(() => {
         if (cookies.jwt) {
-            axios.get('https://adele-node-mongodb.onrender.com/auth/user', { withCredentials: true })
+             // for depl axios.get('https://adele-node-mongodb.onrender.com/auth/user', { withCredentials: true })
+            axios.get('http://localhost:8080/auth/user', { withCredentials: true })
                 .then(response => {
                     if (response.data.status) {
                         toast.success(`Welcome, ${response.data.user.email}`, {
@@ -40,7 +41,8 @@ function Login() {
         event.preventDefault();
         try {
             const { data } = await axios.post(
-                "https://adele-node-mongodb.onrender.com/auth/login",
+                // for depl "https://adele-node-mongodb.onrender.com/auth/login",
+                "http://localhost:8080/auth/login",
                 {
                     ...values,
                 },
@@ -56,6 +58,14 @@ function Login() {
                     toast.success(`Hello, ${values.email}`, {
                         position: "bottom-right",
                     });
+
+
+                    const sessionId = Math.random().toString(36).substring(2, 15);
+
+                    // Store the session ID and user's email in local storage
+                    localStorage.setItem('sessionId', sessionId);
+                    localStorage.setItem('userEmail', values.email);
+
                     navigate('/mapgen', { state: { email: values.email } });
                 }
             }

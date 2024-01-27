@@ -15,8 +15,8 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(cors({
-   // origin: ['http://localhost:3000', 'http://localhost:5173','https://adele-corp.onrender.com'],
-    origin: ['https://adele-corp.onrender.com'],
+   origin: ['http://localhost:3000', 'http://localhost:5173','https://adele-corp.onrender.com'],
+   //  origin: ['https://adele-corp.onrender.com'],
     credentials: true,
 }));
 
@@ -30,7 +30,7 @@ dbConnect().then(() => {
     console.log("DB connection successful!");
 
     // Optional: Call saveData here if needed
-  // saveData();
+ // saveData();
 });
 
 // Use auth routes
