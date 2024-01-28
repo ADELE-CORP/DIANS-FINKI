@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+    mongo_db:
+      container_name: db_container
+      image: mongo:latest
+      restart: always
+      volumes:
+        - mongo_db:/data/db
+
+    api:
+      build: .
+      ports:
+        - 8080:8080
+      environment:
+             PORT : 8080
+             MONGODB_URI : mongodb://mongo_db:27017/adeleCorpDB
+             JWT_SECRET_KEY: super secret key
+             FRONTEND_URI: http://localhost:3000
+      depends_on:
+               - mongo_db
+volumes:
+  mongo_db: {}
