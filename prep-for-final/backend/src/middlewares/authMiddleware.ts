@@ -54,7 +54,6 @@ export const checkUser = (req: Request, res: Response, next: NextFunction) => {
             process.env.JWT_SECRET_KEY || 'super secret key',
             (err: VerifyErrors | null, decodedToken: any) => {
                 if (err) {
-                    res.json({ status: false });
                     next();
                 } else {
                     if (decodedToken && typeof decodedToken === 'object' && 'id' in decodedToken) {
@@ -65,24 +64,22 @@ export const checkUser = (req: Request, res: Response, next: NextFunction) => {
                                     res.locals.user = user; // Store user details in res.locals
                                     next();
                                 } else {
-                                    res.json({ status: false });
                                     next();
                                 }
                             })
                             .catch(error => {
-                                res.json({ status: false });
                                 next();
                             });
                     } else {
-                        res.json({ status: false });
                         next();
                     }
                 }
             }
         );
     } else {
-        res.json({ status: false });
         next();
     }
 };
+
+
 

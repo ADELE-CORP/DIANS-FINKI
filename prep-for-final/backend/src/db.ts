@@ -31,14 +31,13 @@ const Feature = new Schema({
 
 const FeatureModel = mongoose.model('Feature', Feature);
 
-
+//mongodb+srv://eroll:6aWCkmeSAMuuixkt@dians.vetljst.mongodb.net/diansretryWrites=true&w=majority
 
 export async function dbConnect() {
-   // const uri: string = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/quksh';
-    const uri: string = 'mongodb://127.0.0.1:27017/quksh';
+    const uri: string = process.env.MONGODB_URI || 'mongodb://mongo_db:27017/adeleCorpDB';
     try {
         await mongoose.connect(uri);
-        console.log(uri)
+       console.log(uri)
         console.log("DB connection successful!");
     } catch (err) {
         console.error("DB connection error: ", err);

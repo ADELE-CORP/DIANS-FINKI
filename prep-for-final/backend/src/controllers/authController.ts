@@ -7,6 +7,7 @@ import User from "../model/userModel";
 
 
 import mongoose, { Document, Model } from 'mongoose';
+import {FeatureModel} from "../db";
 
 
 const maxAge = 3 * 24 * 60 * 60;
@@ -96,6 +97,16 @@ export const login = async (req: Request, res: Response) => {
     } catch (err) {
         const errors = handleErrors(err as ErrorWithProperties);
         res.json({ errors, created: false });
+    }
+};
+
+
+export const getData = async (req: Request, res: Response) => {
+    try {
+        const data = await FeatureModel.find();
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).send('Error fetching data from MongoDB');
     }
 };
 

@@ -3,9 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = void 0;
+exports.getData = exports.login = exports.register = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userModel_1 = __importDefault(require("../model/userModel"));
+const db_1 = require("../db");
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
     return jsonwebtoken_1.default.sign({ id }, process.env.JWT_SECRET_KEY || "super secret key", {
@@ -64,5 +65,15 @@ const login = async (req, res) => {
     }
 };
 exports.login = login;
+const getData = async (req, res) => {
+    try {
+        const data = await db_1.FeatureModel.find();
+        res.status(200).json(data);
+    }
+    catch (error) {
+        res.status(500).send('Error fetching data from MongoDB');
+    }
+};
+exports.getData = getData;
 exports.default = userModel_1.default;
 //# sourceMappingURL=authController.js.map

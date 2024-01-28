@@ -1,3 +1,5 @@
+//DEFAULT GATEWAYY API
+
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -16,6 +18,7 @@ const port = process.env.PORT || 8080;
 
 app.use(cors({
    origin: ['http://localhost:3000', 'http://localhost:5173','https://adele-corp.onrender.com'],
+  //  origin : 'http://localhost:3000',
    //  origin: ['https://adele-corp.onrender.com'],
     credentials: true,
 }));
@@ -30,7 +33,7 @@ dbConnect().then(() => {
     console.log("DB connection successful!");
 
     // Optional: Call saveData here if needed
- // saveData();
+    // saveData();
 });
 
 // Use auth routes

@@ -54,7 +54,6 @@ const checkUser = (req, res, next) => {
     if (token) {
         jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET_KEY || 'super secret key', (err, decodedToken) => {
             if (err) {
-                res.json({ status: false });
                 next();
             }
             else {
@@ -67,24 +66,20 @@ const checkUser = (req, res, next) => {
                             next();
                         }
                         else {
-                            res.json({ status: false });
                             next();
                         }
                     })
                         .catch(error => {
-                        res.json({ status: false });
                         next();
                     });
                 }
                 else {
-                    res.json({ status: false });
                     next();
                 }
             }
         });
     }
     else {
-        res.json({ status: false });
         next();
     }
 };
